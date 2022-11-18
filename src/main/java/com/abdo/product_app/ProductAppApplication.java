@@ -25,6 +25,8 @@ public class ProductAppApplication implements CommandLineRunner {
 		patientrepo.save(new Patient(1,"abdo",new Date(),false));
 		patientrepo.save(new Patient(2,"anas",new Date(),false));
 		patientrepo.save(new Patient(4,"omar",new Date(),false));
+		patientrepo.save(new Patient(8,"hassan",new Date(),false));
+
 
 
 		patientrepo.findAll().forEach(p->{
