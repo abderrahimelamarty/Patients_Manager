@@ -22,11 +22,13 @@ public class ProductAppApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		patientrepo.save(new Patient(1,"abdo",new Date(),false));
-		patientrepo.save(new Patient(2,"anas",new Date(),false));
-		patientrepo.save(new Patient(4,"omar",new Date(),false));
-		patientrepo.save(new Patient(8,"hassan",new Date(),false));
+		patientrepo.save(new Patient(0,"abdo",new Date(),false));
+		patientrepo.save(new Patient(0,"anas",new Date(),false));
+		patientrepo.save(new Patient(0,"omar",new Date(),false));
+		patientrepo.save(new Patient(0,"hassan",new Date(),false));
 
+		
+		
 
 
 		patientrepo.findAll().forEach(p->{
