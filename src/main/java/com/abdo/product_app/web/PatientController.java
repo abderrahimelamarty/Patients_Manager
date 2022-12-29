@@ -5,10 +5,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List ;
+
+import javax.validation.Valid;
+
 import com.abdo.product_app.dao.PatientRepository;
 import com.abdo.product_app.entities.Patient;
 
@@ -39,6 +45,23 @@ public class PatientController {
 	public String deletePatient2(Long id,String keyword,int page,int size,Model model) {
 		patientrepo.deleteById(id);
 		return list(model,page,size,keyword);
+	}
+	@GetMapping("/formPatient")
+	public String formPatient(Model model ) {
+		model.addAttribute("patient", new Patient());
+		return "formPatient";
+	}
+	@PostMapping("/savePatient")
+	public String savePatient(@Valid Patient patient, BindingResult bindingresult) {
+		if(bindingresult.hasErrors()) return "formPatient";
+		patientrepo.save(patient);
+		return "formPatient";
+	}
+	@GetMapping("/editPatient")
+	public String editPatient(Model model,Long id ) {
+	Patient p= patientrepo.findById(id).get();
+	model.addAttribute("patient", p);
+		return "formPatient";
 	}
 
 }
